@@ -45,7 +45,7 @@ export class MainScene extends Phaser.Scene {
 
 const config = {
   type: Phaser.AUTO,
-  parent: 'app',
+  parent: 'main-game',
   width: 1024,
   height: 800,
   plugins: {

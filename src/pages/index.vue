@@ -49,7 +49,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="app">
+  <div id="main-game" class="flex justify-center self-center">
     <button @click="watch">
       Watch
     </button>
