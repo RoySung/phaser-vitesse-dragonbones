@@ -1,59 +1,29 @@
 import Phaser from 'phaser'
 import logoImg from '/logo.png'
-import DragonBones from '~/external/dragonBones'
 
 export class MainScene extends Phaser.Scene {
-  gopher: dragonBones.phaser.display.ArmatureDisplay | null
-
   constructor(config: string | Phaser.Types.Scenes.SettingsConfig) {
     super(config)
-    this.gopher = null
   }
 
   preload() {
     this.load.image('logo', logoImg)
-
-    this.load.dragonbone(
-      'Armaturegopher-stand',
-      'gopher_stand_tex.png',
-      'gopher_stand_tex.json',
-      'gopher_stand_ske.json',
-    )
   }
 
   create() {
-    this.add.image(800, 300, 'logo')
+    const x = this.game.canvas.width / 2
+    const y = this.game.canvas.height / 2
+    this.add.image(x, y, 'logo')
 
-    this.gopher = this.add.armature('Armaturegopher-stand', 'Armaturegopher-stand')
-    this.gopher.addDBEventListener(DragonBones.EventObject.LOOP_COMPLETE, e => this._animationEventHandler(e), this)
-    this.gopher.x = 200
-    this.gopher.y = 500
-    this.gopher.setScale(0.5)
-    this.gopher.animation.play('walk')
-  }
-
-  _animationEventHandler(event) {
-    // console.log('_animationEventHandler')
-    // console.log(event.animationState.name, event.type, event.name)
-    // if (event.animationState.name === 'normal')
-    //   this.gopher.animation.play('watch')
-
-    // else
-    //   this.gopher.animation.play('normal')
+    this.add.text(0, 0, 'Hello World!')
   }
 }
 
 const config = {
   type: Phaser.AUTO,
-  parent: 'main-game',
-  width: 1024,
-  height: 800,
-  plugins: {
-    scene: [
-      { key: 'DragonBones', plugin: DragonBones.phaser.plugin.DragonBonesScenePlugin, mapping: 'dragonbone' }, // setup DB plugin
-    ],
-  },
-  // scene: MyGame,
+  parent: 'flappy-bird-game',
+  width: 800,
+  height: 600,
 }
 
 export const createGame = () => {
